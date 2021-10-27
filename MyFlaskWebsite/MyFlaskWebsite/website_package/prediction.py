@@ -1,13 +1,13 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, send_file
 import os
 from flask import Flask, flash, request, redirect, url_for
 #from werkzeug.utils import secure_filename
 from flask import Blueprint, render_template, abort, session, redirect, \
     request, current_app as app
-import matplotlib.pyplot as plt 
+#import matplotlib.pyplot as plt 
 from pandas.plotting import table 
 import pandas as pd
-import dataframe_image as dfi
+#import dataframe_image as dfi
 from flask import send_from_directory
 from flask import current_app
 pred = Blueprint("pred", __name__)
@@ -36,9 +36,15 @@ def upload_file():
             #print("uploadbutton pushed")
             #file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
             data = pd.read_csv(file)[:10]
-            #data.to_csv("/uploadfile/data.csv")
+            path = "MyFlaskWebsite/website_package/uploadfile/data.csv"
+            #path1 = os.path.dirname(os.path.abspath(__file__))
+            #----------------------- PREDICTION---------------------
+
+            #-------------------------------------------------------
+            data.to_csv(path)
+            
             #uploads = os.path.join(current_app.root_path, app.config['UPLOAD_FOLDER'])
-            return send_from_directory(app.config['UPLOAD_FOLDER'],filename="data.csv")
+            return send_file("./uploadfile/data.csv" , as_attachment=True)
             
 
     return render_template("pred.html")
