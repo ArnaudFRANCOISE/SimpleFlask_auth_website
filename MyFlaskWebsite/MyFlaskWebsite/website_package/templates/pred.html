@@ -3,8 +3,9 @@
 {% block content %}
 
 <div>
-    <img src="{{url_for('Ressources',filename = '/so_icon.jpg')}}" alt="User Image">   
-
+    <p align=center> 
+        <img src="{{url_for('static',filename = '/Ressources/so_icon.jpg')}}" alt="User Image">   
+    </p>
 </div>
 <h1>Upload new File</h1>
 <form method=post enctype=multipart/form-data>
