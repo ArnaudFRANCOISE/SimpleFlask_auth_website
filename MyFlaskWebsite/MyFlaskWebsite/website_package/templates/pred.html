@@ -2,13 +2,21 @@
 {% block title %} StackOverflow_prediction {% endblock %}
 {% block content %}
 
-<div>
-    <p align=center> 
-        <img src="{{url_for('static',filename = '/Ressources/so_icon.jpg')}}" alt="User Image">   
-    </p>
-</div>
-<h1>Upload new File</h1>
-<form method=post enctype=multipart/form-data>
-    <input type=file name=file>
-    <input type=submit value=Upload>
+<body style="background-color: #ffeed4">
+    <div>
+
+        <p align=center> 
+            <img src="{{url_for('static',filename = '/Ressources/so_icon_resized.jpg')}}" alt="User Image">   
+        </p>
+    </div>
+
+    <h1>Upload your csv file</h1>
+    <h3>It must contain a ["Body"] and a ["Title"] column</h3>
+
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+
+        <input type=submit value="Download prediction">
+
+</body>
 {% endblock %}

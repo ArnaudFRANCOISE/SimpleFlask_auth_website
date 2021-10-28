@@ -7,8 +7,11 @@ from flask import Blueprint, render_template, abort, session, redirect, \
 #import matplotlib.pyplot as plt 
 from pandas.plotting import table 
 import pandas as pd
-#import dataframe_image as dfi
-from flask import send_from_directory
+
+
+import website_package.static.RNN_weigth.rnn_model as model
+
+
 from flask import current_app
 pred = Blueprint("pred", __name__)
 
@@ -36,15 +39,18 @@ def upload_file():
             #print("uploadbutton pushed")
             #file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
             data = pd.read_csv(file)[:10]
-            path = "MyFlaskWebsite/website_package/uploadfile/data.csv"
+            
             #path1 = os.path.dirname(os.path.abspath(__file__))
-            #----------------------- PREDICTION---------------------
 
+
+            #----------------------- PREDICTION---------------------
+            data = model.pipeline(data, "./MyFlaskWebsite/website_package/static/RNN_weigth/RNN_V2_RNN_V2_14")
             #-------------------------------------------------------
+            path = "MyFlaskWebsite/website_package/uploadfile/data.csv"
             data.to_csv(path)
             
             #uploads = os.path.join(current_app.root_path, app.config['UPLOAD_FOLDER'])
             return send_file("./uploadfile/data.csv" , as_attachment=True)
             
-
+    #os.remove("MyFlaskWebsite/website_package/uploadfile/data.csv")
     return render_template("pred.html")
