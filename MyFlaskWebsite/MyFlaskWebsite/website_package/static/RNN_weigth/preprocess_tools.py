@@ -5,7 +5,6 @@ Created on Mon Oct  4 11:32:24 2021
 @author: PC-ARNAUD
 """
 import string
-import nltk
 import re
 import nltk
 import numpy as np
